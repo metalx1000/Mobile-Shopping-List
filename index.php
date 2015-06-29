@@ -21,6 +21,8 @@
 
   <div id="list">
   </div>
+
+  <button id="showAll" type="button" class="btn btn-primary btn-block btn-lg">Show All Stores</button>
 </div>
 
 </body>

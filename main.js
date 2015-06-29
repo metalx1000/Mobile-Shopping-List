@@ -5,7 +5,10 @@ $(document).ready(function(){
 
   $("#list").on('click',".glyphicon-remove",function(){
     $(this).parent('a').remove();
-    update_list();
+    var item = $(this).parent('a').text();
+    $.post('remove.php',{ item: item}).done(function(){ 
+      update_list();
+    });
   });
 
   $('#submit').click(function(){
@@ -19,13 +22,17 @@ $(document).ready(function(){
     }
   });
 
-/*
-  $("#list").on("click",".store").click(function(){
+
+  $("#list").on("click",".store",function(){
     //alert("test"); 
-    //limit=$(this).parent("div").attr("id");
-    //update_list();
+    limit=$(this).parent("div").attr("id");
+    update_list();
   });
-*/
+
+  $("#showAll").click(function(){
+    limit = null;
+    update_list();
+  });
   update_list();
 });
 
@@ -42,12 +49,18 @@ function update_list(){
       $("#store_"+item.store).append('<a href="#" id="'+item.item+'" class="list-group-item">'+item.item+'<span class="glyphicon glyphicon-remove pull-right"></a>');
         
     });
-  }).done(function(){store=null});
+  }).done(function(){
+    store=null
 
- /* if(limit != null){
-    $(".list-group").hide();
-    $("."+limit).show();
-  };
-*/
+    if(limit != null){
+      $(".list-group").each(function(idex){
+        
+        var id = $(this).attr('id')
+        if(id != limit){
+          $(this).hide();
+        }        
+      });
+    };
+  });
 };
 
