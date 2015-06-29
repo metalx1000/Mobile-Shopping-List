@@ -34,12 +34,17 @@ $(document).ready(function(){
     limit = null;
     update_list();
   });
+
+  setInterval(function(){
+    update_list();
+  },5000);
+
   update_list();
 });
 
 function update_list(){
-  $("#list").html("");
   $.getJSON( 'get.php', function( data ) {
+    $("#list").html("");
     data.forEach(function(item){
       if(store != item.store){
         store=item.store;
