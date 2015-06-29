@@ -18,6 +18,7 @@ $(document).ready(function(){
     for(var i = 1;i<list.length;i++){
       $.post('submit.php',{ store:store,item:list[i].toUpperCase() }).done(function(){
         update_list();
+        $("#entry").val("");
       });
     }
   });
