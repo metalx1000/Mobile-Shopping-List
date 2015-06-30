@@ -17,7 +17,7 @@ $(document).ready(function(){
     var store = list[0].toUpperCase();
     for(var i = 1;i<list.length;i++){
       if(list[i] != ""){
-        $.post('submit.php',{ store:store,item:list[i].toUpperCase() }).done(function(){
+        $.post('submit.php',{ store:store,item:list[i].replace(/'/g, "`").toUpperCase() }).done(function(){
           update_list();
         });
       }
