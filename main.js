@@ -16,11 +16,13 @@ $(document).ready(function(){
     list = list.split(",");
     var store = list[0].toUpperCase();
     for(var i = 1;i<list.length;i++){
-      $.post('submit.php',{ store:store,item:list[i].toUpperCase() }).done(function(){
-        update_list();
-        $("#entry").val("");
-      });
+      if(list[i] != ""){
+        $.post('submit.php',{ store:store,item:list[i].toUpperCase() }).done(function(){
+          update_list();
+        });
+      }
     }
+    $("#entry").val("");
   });
 
 
