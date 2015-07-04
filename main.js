@@ -8,11 +8,13 @@ $(document).ready(function(){
   $(".progress").fadeOut('slow');
 
   $("#list").on('click',".glyphicon-remove",function(){
+    var pos = document.body.scrollTop;
     $(this).parent('a').remove();
     var item = $(this).parent('a').text();
     $.post('remove.php',{ item: item}).done(function(){ 
+      window.scrollTo(0, pos);
       update_list();
-    });
+    },pos);
   });
 
   $('#submit').click(function(){
@@ -29,7 +31,6 @@ $(document).ready(function(){
           update_list();
           itemNum+=1;
           var percent = Math.round(itemNum/list.length*100);
-          console.log(percent);
           $("#progress").css("width",percent+"%");
 
           if(percent == 100){
