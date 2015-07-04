@@ -1,7 +1,11 @@
 var store = null;
 var limit = null;
+var itemNum;
+var list;
 
 $(document).ready(function(){
+  //hide progess bar
+  $(".progress").fadeOut('slow');
 
   $("#list").on('click',".glyphicon-remove",function(){
     $(this).parent('a').remove();
@@ -12,17 +16,30 @@ $(document).ready(function(){
   });
 
   $('#submit').click(function(){
-    var list = $("#entry").val();
+    itemNum = 1;
+    $("#progress").css("width","0%");
+    $(".progress").fadeIn();
+
+    list = $("#entry").val();
     list = list.split(",");
     var store = list[0].toUpperCase();
     for(var i = 1;i<list.length;i++){
       if(list[i] != ""){
         $.post('submit.php',{ store:store,item:list[i].replace(/'/g, "`").toUpperCase() }).done(function(){
           update_list();
+          itemNum+=1;
+          var percent = Math.round(itemNum/list.length*100);
+          console.log(percent);
+          $("#progress").css("width",percent+"%");
+
+          if(percent == 100){
+            $(".progress").fadeOut('slow');
+          }
         });
       }
     }
     $("#entry").val("");
+
   });
 
 

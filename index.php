@@ -37,6 +37,13 @@
 <div class="container">
   <h1>Shopping List</h1>    
 
+  <!--progress bar-->
+  <div class="progress">
+    <div id="progress" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+      Adding Items 
+    </div>
+  </div>
+
   <div class="form-group">
     <input type="text" class="form-control" id="entry" placeholder="Enter store and items separated by comas">  
     <button id="submit" type="button" class="btn btn-primary btn-block btn-lg">Submit</button>
