@@ -68,11 +68,13 @@ function update_list(){
     data.forEach(function(item){
       if(store != item.store){
         store=item.store;
-        $("#list").append('<div id="store_'+item.store+'" class="list-group"></div>');    
-        $("#store_"+item.store).append('<a href="#" id="'+item.store+'" class="list-group-item active store">'+item.store+'</a>');
+        storeID = store.replace(/ /g,"_");
+        $("#list").append('<div id="store_'+storeID+'" class="list-group"></div>');    
+        $("#store_"+storeID).append('<a href="#" id="'+storeID+'" class="list-group-item active store">'+item.store+'</a>');
       }
 
-      $("#store_"+item.store).append('<a href="#" id="'+item.item+'" class="list-group-item">'+item.item+'<span class="glyphicon glyphicon-remove pull-right"></a>');
+      storeID = store.replace(/ /g,"_");
+      $("#store_"+storeID).append('<a href="#" id="'+item.item+'" class="list-group-item">'+item.item+'<span class="glyphicon glyphicon-remove pull-right"></a>');
         
     });
   }).done(function(){
