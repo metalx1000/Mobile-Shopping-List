@@ -1,0 +1,4 @@
+[30-Jun-2015 07:15:29 America/New_York] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home3/metalx/public_html/private/Mobile-Shopping-List/submit.php on line 12
+[30-Jun-2015 07:16:21 America/New_York] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home3/metalx/public_html/private/Mobile-Shopping-List/submit.php on line 12
+[30-Jun-2015 07:18:19 America/New_York] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home3/metalx/public_html/private/Mobile-Shopping-List/submit.php on line 12
+[30-Jun-2015 07:21:15 America/New_York] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home3/metalx/public_html/private/Mobile-Shopping-List/submit.php on line 12

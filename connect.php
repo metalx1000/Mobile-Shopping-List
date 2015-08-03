@@ -1,8 +1,8 @@
 <?php
 $host="localhost";
-$user="root";
-$pwd="root";
-$db="shopping";
+$user="metalx_user";
+$pwd="]VoTFo3F;K?.";
+$db="metalx_shopping";
 // Create connection
 $con=mysqli_connect($host,$user,$pwd,$db);
 // Check connection

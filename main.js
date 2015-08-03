@@ -69,11 +69,13 @@ function update_list(){
       if(store != item.store){
         store=item.store;
         storeID = store.replace(/ /g,"_");
+        storeID = store.replace(/'/g,"_");
         $("#list").append('<div id="store_'+storeID+'" class="list-group"></div>');    
         $("#store_"+storeID).append('<a href="#" id="'+storeID+'" class="list-group-item active store">'+item.store+'</a>');
       }
 
       storeID = store.replace(/ /g,"_");
+      storeID = store.replace(/'/g,"_");
       $("#store_"+storeID).append('<a href="#" id="'+item.item+'" class="list-group-item">'+item.item+'<span class="glyphicon glyphicon-remove pull-right"></a>');
         
     });
