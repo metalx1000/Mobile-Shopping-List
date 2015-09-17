@@ -18,7 +18,8 @@ $(document).ready(function(){
   });
 
   $('#submit').click(submit);
-  
+
+  $("#entry").focus();  
   //submit on enter key press
   $("#entry").keypress(function(e) {
     if(e.which == 13) {
@@ -90,12 +91,20 @@ function submit(){
     $(".progress").fadeIn();
 
     list = $("#entry").val().toLowerCase();
+    if(list.indexOf("submit")>=0){
+      var voice = true;
+    }else{
+      var voice = false;
+    }
     list = list.replace('submit','')
     //console.log(list);
     list = list.split(",");
     var store = list[0].toUpperCase();
+    if(voice){voiceBack("Adding to list for " + store);}
     for(var i = 1;i<list.length;i++){
       if(list[i] != ""){
+        if(i == list.length - 1 && i > 1){voiceBack("and");}
+        if(voice){voiceBack(list[i]);}
         $.post('submit.php',{ store:store,item:list[i].replace(/'/g, "`").toUpperCase() }).done(function(){
           update_list();
           itemNum+=1;
@@ -109,6 +118,12 @@ function submit(){
       }
     }
     $("#entry").val("");
+}
 
-
+function voiceBack(msg){
+  if ('speechSynthesis' in window) { 
+    var utterance = new SpeechSynthesisUtterance(msg);
+    
+    window.speechSynthesis.speak(utterance);
+  }
 }
