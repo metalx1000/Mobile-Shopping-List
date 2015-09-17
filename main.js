@@ -17,32 +17,21 @@ $(document).ready(function(){
     },pos);
   });
 
-  $('#submit').click(function(){
-    itemNum = 1;
-    $("#progress").css("width","0%");
-    $(".progress").fadeIn();
-
-    list = $("#entry").val();
-    list = list.split(",");
-    var store = list[0].toUpperCase();
-    for(var i = 1;i<list.length;i++){
-      if(list[i] != ""){
-        $.post('submit.php',{ store:store,item:list[i].replace(/'/g, "`").toUpperCase() }).done(function(){
-          update_list();
-          itemNum+=1;
-          var percent = Math.round(itemNum/list.length*100);
-          $("#progress").css("width",percent+"%");
-
-          if(percent == 100){
-            $(".progress").fadeOut('slow');
-          }
-        });
-      }
+  $('#submit').click(submit);
+  
+  //submit on enter key press
+  $("#entry").keypress(function(e) {
+    if(e.which == 13) {
+      submit();
     }
-    $("#entry").val("");
-
   });
 
+  $("#entry").on('input',function(){
+    var input = $("#entry").val().toLowerCase();
+    if(input.indexOf("submit")>=0){
+      submit();
+    }      
+  });
 
   $("#list").on("click",".store",function(){
     //alert("test"); 
@@ -94,3 +83,32 @@ function update_list(){
   });
 };
 
+
+function submit(){
+  itemNum = 1;
+    $("#progress").css("width","0%");
+    $(".progress").fadeIn();
+
+    list = $("#entry").val().toLowerCase();
+    list = list.replace('submit','')
+    //console.log(list);
+    list = list.split(",");
+    var store = list[0].toUpperCase();
+    for(var i = 1;i<list.length;i++){
+      if(list[i] != ""){
+        $.post('submit.php',{ store:store,item:list[i].replace(/'/g, "`").toUpperCase() }).done(function(){
+          update_list();
+          itemNum+=1;
+          var percent = Math.round(itemNum/list.length*100);
+          $("#progress").css("width",percent+"%");
+
+          if(percent == 100){
+            $(".progress").fadeOut('slow');
+          }
+        });
+      }
+    }
+    $("#entry").val("");
+
+
+}
